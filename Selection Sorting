@@ -1,0 +1,24 @@
+def smallest_elem(arr):  # Function to find the smallest element in array
+    smallest = arr[0]  # Choose first elem in initial array
+    smallest_index = 0
+    for i in range(1, len(arr)):
+        if arr[i] < smallest:
+            smallest = arr[i]
+            smallest_index = i
+    return smallest_index  # Return index of smallest element
+
+
+def selection_sort(arr):   # Function to sort initial array
+    new_arr = []
+    for i in range(len(arr)):
+        smallest = smallest_elem(arr)   # Return index of smallest element from previous func
+        new_arr.append(arr.pop(smallest))   # Adding element in new array when pops it from initial
+    return new_arr
+
+
+exp = [1, 25, 3, 7, 5, 7, 15]
+print(selection_sort(exp))
+
+"""
+    Print: [1, 3, 5, 7, 7, 15, 25]
+"""
