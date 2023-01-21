@@ -1,0 +1,65 @@
+def countdown(i):  # 1 Infinite function
+    print(i)
+    countdown(i - 1)
+
+
+print(countdown(3))
+
+
+def countdown2(i):  # 2 Changed previous function
+    print(i)
+    if i <= 1:  # Base case to interrupt infinite loop
+        return
+    else:  # Recursive case
+        countdown2(i - 1)
+
+
+print(countdown2(3))
+
+
+def greet(name):  # 3 Stack example: LIFO ("greet" calls -> "greet2" calls -> "bye")
+    print("hello, " + name + "!")
+    greet2(name)
+    print("getting ready to say bye...")
+    bye()
+
+
+def greet2(name):
+    print("how are you, " + name + "?")
+
+
+def bye():
+    print("ok bye!")
+
+
+print(greet("Peter"))
+
+
+def fact(x):  # 4 Factorial function
+    if x == 0 or x == 1:
+        return 1
+    else:
+        return x * fact(x-1)
+
+
+factNum = 6
+print(fact(factNum))
+print(fact(0))
+
+""" 
+    First func: loop from 3 to infinite
+    
+    Second func: loop from 3 to 1
+    
+    Third func: "hello, Peter!"  
+                "how are you, Peter?"
+                "getting ready to say bye..."
+                "ok bye!"   
+                
+    Fourth func: 720 => (6 * 5 * 4 * 3 * 2 * 1 )
+                 1 => ( 0! = 1 )
+"""
+
+P.S.:  I've changed the condition in "fact" function from: if x == 1 to if x == 1 or x == 0, because it doesn't include the case when you put zero in function.
+P.S.2: When you call the 3rd function, it creates "stack calls" which principle is: "Last in - first out".
+       It means, that last called function will be executed. while previous one will be temporary stopped.
