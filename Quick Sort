@@ -1,0 +1,22 @@
+def quick_sort(arr):  # Quick sort function
+    if len(arr) < 2:  # Base case, when arr has only one or 0 elements to get rid of infinite loop
+        return arr
+    else:
+        pivot = arr[0]  # Take first element in list
+        greater = [i for i in arr[1:] if i > pivot]  # Creating list with elements higher than "pivot"
+        lower = [i for i in arr[1:] if i < pivot]    # Creating list with elements lower than "pivot"
+        return quick_sort(lower) + [pivot] + quick_sort(greater)  # Recursion case, when we continue split our lists until base case
+
+
+exp = [1, 12, 65, 5, 4, 22, 31]
+
+print(quick_sort(exp))
+
+"""
+    Print: [1, 4, 5, 12, 22, 31, 65]
+"""
+
+P.S.: We put in function list "exp". [1, 12, 65, 5, 4, 22, 31]. Then, we choose pivot = exp[0] = 1.
+After that, we create greater list.  [12, 65, 5, 4, 22, 31]. Because all elements higher than pivot.
+Next step, we create lower list. []. It has zero elements, actually. And after all of that, we continue the same operations with our new lists (greater & lower) until 
+we get base cases. In the end, we will get a lot of base cases and just sum them to get our final result.
