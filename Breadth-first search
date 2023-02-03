@@ -1,0 +1,43 @@
+from collections import deque  # Import queue from collections
+
+graph = {"you": ["alla", "gleb", "dima"],  # Creating a simple graph (All names must be in "keys" section or it will raise "KeyError")
+         "gleb": ["dima", "alla", "you"],
+         "dima": ["oleg", "artem"],
+         "andrey": ["you"],
+         "maria": ["gleb", "dima"],
+         "alla": ["you", "andrey", "maria"],
+         "artem": ["gleb"]}
+
+
+def person_is_seller(name):  # Simple fuction to find needed person and stop searching in graph
+    if name[-1] == 'y':
+        return name
+    else:
+        return
+
+
+def search(name):  # Main function to iterate through the graph (We add values by key and trying to find person with needed characteristics)
+    search_queue = deque()
+    search_queue += graph[name]
+    searched = []
+    while search_queue:
+        person = search_queue.popleft()
+        if person not in searched:
+            if person_is_seller(person):
+                print(person + " is a mango seller!")
+                return True
+            else:
+                search_queue += graph[person]
+                searched.append(person)
+    return False
+
+
+search("you")
+
+"""
+  Our print will be: "andrey is a mango seller!"
+"""
+
+P.S.: Queue is a data structure that works like FIFO (First in - First out). 
+At first, we add list ["alla", "gleb", "dima"] in the queue by the "name" key. Then, we check "alla" value to find our "Mango seller". If it her - we end procedure
+and print the result, otherwise, we add "alla" in the searched list to ignore her in the future steps and continue iterating through other values untill result.
